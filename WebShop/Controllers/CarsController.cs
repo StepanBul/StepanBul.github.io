@@ -14,14 +14,15 @@ namespace WebShop.Controllers
         private readonly IAllCars _allCars;
         private readonly ICarsCategory _allCategories;
 
-        public CarsController(IAllCars iAllCars, ICarsCategory iCarsCat)
+        public CarsController(IAllCars iAllCars, ICarsCategory iCarsCat) //конструктор
         {
-            _allCars = iAllCars;
+            _allCars = iAllCars;//помимо интерфейса обращаемся еще и к классу, который реализует интерфейс блягодаря скрипту Startup
             _allCategories = iCarsCat;
         }
         [Route("Cars/List")]
         [Route("Cars/List/{category}")]
-        public ViewResult List(string category)
+
+        public ViewResult List(string category)//возвращает html страничку
         {
             string _category = category;
             IEnumerable<Car> cars = null;
@@ -32,12 +33,12 @@ namespace WebShop.Controllers
             }
             else
             {
-                if(string.Equals("electro", category, StringComparison.OrdinalIgnoreCase))
+                if(string.Equals("electro", category, StringComparison.OrdinalIgnoreCase))//выводит все электромобили
                 {
                     cars = _allCars.Cars.Where(i => i.Category.categoryname.Equals("электромобили")).OrderBy(i => i.id);
                     currCategory = "электромобили";
                 }
-                else if (string.Equals("fuel", category, StringComparison.OrdinalIgnoreCase))
+                else if (string.Equals("fuel", category, StringComparison.OrdinalIgnoreCase))//выводит все бензиновые автомобили
                 {
                     cars = _allCars.Cars.Where(i => i.Category.categoryname.Equals("Классический автомобиль")).OrderBy(i => i.id);
                     currCategory = "Классический автомобиль";

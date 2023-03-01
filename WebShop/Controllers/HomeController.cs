@@ -13,7 +13,7 @@ namespace WebShop.Controllers
             _carRep = carRep;
         }
 
-        public ViewResult Index()
+        public ViewResult Index()//возвращаем шаблон и отображаем на главной странице все товары, у которых isFavorite = true 
         {
             var homeCars = new HomeViewModel
             {

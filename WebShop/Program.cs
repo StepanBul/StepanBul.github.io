@@ -11,7 +11,7 @@ namespace WebShop
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main(string[] args)//функция запуска проекта
         {
             CreateHostBuilder(args).Build().Run();
         }

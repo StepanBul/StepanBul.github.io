@@ -1,5 +1,5 @@
 ﻿{
-  "iisSettings": {
+  "iisSettings": { //запуск через IIS Expess
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WebShop": {
+    "WebShop": {//Сборка всего проекта WebShop
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

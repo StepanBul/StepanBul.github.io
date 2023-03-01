@@ -4,9 +4,9 @@ using WebShop.Data.Models;
 
 namespace WebShop.Data.mocks
 {
-    public class MockCategory : ICarsCategory
+    public class MockCategory : ICarsCategory//класс реализует интерфейс ICarsCategory
     {
-        public IEnumerable<Category> AllCategories {
+        public IEnumerable<Category> AllCategories {//реализуем функцию AllCategories
             get
             {
                 return new List<Category>()

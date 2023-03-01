@@ -3,7 +3,7 @@ using System;
 
 namespace WebShop.Data.Models
 {
-    public class OrderDetail
+    public class OrderDetail//данные заказа
     {
         public int id { get; set; }
         public int orderID { get; set; }

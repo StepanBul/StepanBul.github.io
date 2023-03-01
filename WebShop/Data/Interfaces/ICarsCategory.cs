@@ -6,6 +6,6 @@ namespace WebShop.Data.Interfaces
 {
     public interface ICarsCategory
     {
-        IEnumerable<Category> AllCategories { get; }
+        IEnumerable<Category> AllCategories { get; }//возвращает список
     }
 }

@@ -4,9 +4,9 @@ using WebShop.Data.Models;
 
 namespace WebShop.Data
 {
-    public class AppDBContent : DbContext
+    public class AppDBContent : DbContext//класс, хранящий все настройки связанные с базами данных
     {
-        public AppDBContent(DbContextOptions<AppDBContent> options) : base(options)
+        public AppDBContent(DbContextOptions<AppDBContent> options) : base(options)//вызываем базовый конструктор по умолчанию
         {
 
         }

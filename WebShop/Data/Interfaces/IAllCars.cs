@@ -6,8 +6,8 @@ namespace WebShop.Data.Interfaces
 {
     public interface IAllCars
     {
-        IEnumerable<Car> Cars { get; }
-        IEnumerable<Car> getFavCars { get; }
-        Car getObjectCar(int carId);
+        IEnumerable<Car> Cars { get; }//возвращает весь товар
+        IEnumerable<Car> getFavCars { get; }//возвращает избранные товары
+        Car getObjectCar(int carId);//принимает id автомобиля
     }
 }

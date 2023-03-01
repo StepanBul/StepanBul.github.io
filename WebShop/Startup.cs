@@ -26,18 +26,16 @@ namespace WebShop
 
         public Startup(IHostingEnvironment hostEnv)
         {
-            _confString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
+            _confString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();//обращаемс€ к строке dbsettings.json
         }
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services) //—лужит дл€ регистрации различных модулей/плагинов
         {
-            services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));
-            services.AddTransient<IAllCars, CarRepository>();
+            services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));//подключаем _confString и выт€гиваем строчку DefaultConnection
+            services.AddTransient<IAllCars, CarRepository>();//команда AddTransien объедин€ет интерфес и класс, который реализует интерфейс
             services.AddTransient<ICarsCategory, CategoryRepository>();
-            services.AddTransient<IAllOrders, OrdersRepository>();
-            
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            
-            services.AddScoped(sp => ShopCart.GetCart(sp));
+            services.AddTransient<IAllOrders, OrdersRepository>();          
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();          
+            services.AddScoped(sp => ShopCart.GetCart(sp));//сервис позвол€ет создавать корзину дл€ каждого отдельного пользовател€
             services.AddMvc();
             services.AddMvc(options =>
             {
@@ -48,15 +46,14 @@ namespace WebShop
         }
 
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
             app.UseDeveloperExceptionPage();
-            app.UseStatusCodePages();
-            app.UseStaticFiles();
+            app.UseStatusCodePages();//позвол€ет отображать страничку с кодами(например 404)
+            app.UseStaticFiles();//позвол€ет работать со статическими файлами(картинки и т.д.)
             app.UseSession();
-            //app.UseMvcWithDefaultRoute();
-            app.UseMvc(routes =>
+            //app.UseMvcWithDefaultRoute();//использует url поумолчанию, если отсутстует контроллер и вид. ќтобразитс€ home
+            app.UseMvc(routes =>//самописный аналог app.UseMvcWithDefaultRoute с дополнительной ссылкой на категории
             {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{category?}", defaults: new { Controller = "Car", action = "List" });

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace WebShop.Data.Models
 {
-    public class ShopCart
+    public class ShopCart//модель отвечает за конзину
     {
         private readonly AppDBContent appDBContent;
 
@@ -16,19 +16,19 @@ namespace WebShop.Data.Models
             this.appDBContent = appDBContent;
         }
 
-        public string ShopCartId { get; set; }
-        public List<ShopCartItem> listShopItems { get; set;}
+        public string ShopCartId { get; set; }//выводит в корзину однотипный товар. Если он разный, то создается дополнительная корзина
+        public List<ShopCartItem> listShopItems { get; set;}//список всех элементов, отображаемых в корзине
 
-        public static ShopCart GetCart(IServiceProvider services)
+        public static ShopCart GetCart(IServiceProvider services)//функция позволяет добавлять новый товар, не теряя старый
         {
-            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;//создаем новую сессию
             var context = services.GetRequiredService<AppDBContent >();
             string shopCartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
 
             session.SetString("CartId",shopCartId);
             return new ShopCart(context) { ShopCartId = shopCartId };
         }
-        public void AddToCart(Car car)
+        public void AddToCart(Car car)//функция позволяет добавлять товар в корзину
         {
             appDBContent.ShopCartItem.Add(new ShopCartItem
             {

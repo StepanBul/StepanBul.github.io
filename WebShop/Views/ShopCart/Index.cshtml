@@ -1,6 +1,6 @@
 ﻿@model ShopCartViewModel
 
-<div class="container">
+<div class="container">//<!--перебираем все элемены в shopcart и выводим добавленные в виде списка-->
     @foreach(var el in Model.shopCart.listShopItems)
     {
         <div class="alert alert-warning mt-3">

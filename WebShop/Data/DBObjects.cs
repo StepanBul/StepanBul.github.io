@@ -6,19 +6,19 @@ using WebShop.Data.Models;
 
 namespace WebShop.Data
 {
-    public class DBObjects
+    public class DBObjects//класс отображающий данные из базы данных
     {
         public static void Initial(AppDBContent content)
         {
             
             
 
-            if (!content.Category.Any())
+            if (!content.Category.Any())//проверка на наличие категории в базе данных. Если категории нет, то она добавляется
             {
                 content.Category.AddRange(Categories.Select(c => c.Value));
             }
 
-            if (!content.Car.Any())
+            if (!content.Car.Any())//проверка на наличие автомобиля в базе данных. Если автомобиля нет, то она добавляется
             {
                 content.AddRange(
                     new Car
@@ -45,7 +45,7 @@ namespace WebShop.Data
                     }
                     );
             }
-            content.SaveChanges();
+            content.SaveChanges();//созраняем все изменения в базе данных
         }
         private static Dictionary<string, Category> category;
         public static Dictionary<string, Category> Categories
